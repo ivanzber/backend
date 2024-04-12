@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|c:\\users\\ivana\\desktop\\semestre vl\\software ll\\proyecto_software\\reservabe\\reservabe\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|solutionrelative:reservabe\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|c:\\users\\ivana\\desktop\\semestre vl\\software ll\\proyecto_software\\reservabe\\reservabe\\models\\cancha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|solutionrelative:reservabe\\models\\cancha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|c:\\users\\ivana\\desktop\\semestre vl\\software ll\\proyecto_software\\reservabe\\reservabe\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FA2C720-1C8A-47D9-9971-06D64D89C704}|RESERVABe\\RESERVABe.csproj|solutionrelative:reservabe\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cancha.cs",
+              "DocumentMoniker": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Models\\Cancha.cs",
+              "RelativeDocumentMoniker": "RESERVABe\\Models\\Cancha.cs",
+              "ToolTip": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Models\\Cancha.cs",
+              "RelativeToolTip": "RESERVABe\\Models\\Cancha.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T23:01:38.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "RESERVABe\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "RESERVABe\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAkwA8AAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-06T15:06:57.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "RESERVABe\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "RESERVABe\\Services\\UsuarioService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-06T15:05:44.463Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@RESERVABe_HostAddress = http://localhost:5206
+
+GET {{RESERVABe_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
