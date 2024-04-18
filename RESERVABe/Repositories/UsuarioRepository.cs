@@ -52,7 +52,30 @@ namespace RESERVABe.Data
             }
             return usuario;
         }
-
+        public Usuario ObtenerUsuarioPorCorreo(string correo)
+        {
+            Usuario usuario = new Usuario();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM usuario WHERE correo = @correo", connection);
+                command.Parameters.AddWithValue("@correo", correo);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        usuario.idUsuario = reader.GetInt32(0);
+                        usuario.nombreUsuario = reader.GetString(1);
+                        usuario.apellidoUsuario = reader.GetString(2);
+                        usuario.correo = reader.GetString(3);
+                        usuario.idRol = reader.GetInt32(4);
+                        usuario.clave = reader.GetString(5);
+                    }
+                }
+            }
+            return usuario;
+        }
         public void ModificarUsuario(int id, Usuario usuario)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

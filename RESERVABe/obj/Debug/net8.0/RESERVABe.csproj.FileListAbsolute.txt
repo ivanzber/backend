@@ -36,3 +36,4 @@ C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESER
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\RESERVABe.pdb
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\RESERVABe.genruntimeconfig.cache
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\ref\RESERVABe.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\RESERVABe.sourcelink.json

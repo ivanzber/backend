@@ -1,15 +1,37 @@
+using RESERVABe.Data;
+using RESERVABe.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+// Agregar UsuarioRepository como servicio
+builder.Services.AddScoped<UsuarioRepository>();
+
+// Agregar AuthenticationService como servicio
+builder.Services.AddScoped<AuthenticationService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Configuración de Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Uso de CORS
+app.UseCors("AllowAnyOrigin");
+
+// Configuración del pipeline de la aplicación
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
