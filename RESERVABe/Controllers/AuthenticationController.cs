@@ -23,16 +23,16 @@ namespace RESERVABe.Controllers
                 bool isAuthenticated = _authenticationService.Login(login.correo, login.clave);
                 if (isAuthenticated)
                 {
-                    return Ok("Inicio de sesión exitoso");
+                    return Ok(new { message = "Inicio de sesión exitoso" });
                 }
                 else
                 {
-                    return Unauthorized("Correo electrónico o contraseña inválidos");
+                    return Unauthorized(new { error = "Correo electrónico o contraseña inválidos" });
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest(new { error = "Datos de entrada inválidos", details = ModelState });
             }
         }
     }

@@ -22,12 +22,35 @@ namespace RESERVABe.Data
                 command.Parameters.AddWithValue("@apellidousuario", usuario.apellidoUsuario);
                 command.Parameters.AddWithValue("@correo", usuario.correo);
                 command.Parameters.AddWithValue("@idRol", usuario.idRol);
-                command.Parameters.AddWithValue("@clave", ContraseñaHasher.HashPassword(usuario.clave));
+                string contraseñaEncriptada = EncryptionHelper.Encrypt(usuario.clave);
+                command.Parameters.AddWithValue("@clave", contraseñaEncriptada);
                 command.ExecuteNonQuery();
             }
         }
+        public string ObtenerContraseña(string nombreUsuario)
+        {
+            string contraseñaEncriptada = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT clave FROM usuario WHERE nombreUsuario = @nombreusuario", connection);
+                command.Parameters.AddWithValue("@nombreusuario", nombreUsuario);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        contraseñaEncriptada = reader["clave"].ToString();
+                    }
+                }
+            }
 
-        public Usuario ObtenerUsuario(int id)
+            // Desencriptar la contraseña antes de devolverla
+            string contraseñaDesencriptada = EncryptionHelper.Decrypt(contraseñaEncriptada);
+            return contraseñaDesencriptada;
+        }
+    
+
+    public Usuario ObtenerUsuario(int id)
         {
             Usuario usuario = new Usuario();
             using (SqlConnection connection = new SqlConnection(connectionString))

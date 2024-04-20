@@ -14,18 +14,20 @@ namespace RESERVABe.Services
 
         public bool Login(string correo, string clave)
         {
-            // Obtener el usuario por el correo electrónico
-            Usuario usuario = _usuarioRepository.ObtenerUsuarioPorCorreo(correo);
+            // Obtener la contraseña encriptada del usuario por el correo electrónico
+            string contraseñaEncriptada = _usuarioRepository.ObtenerContraseña(correo);
 
-            if (usuario == null)
+            if (contraseñaEncriptada == null)
             {
                 // El usuario no existe
                 return false;
             }
 
+            // Desencriptar la contraseña obtenida de la base de datos
+            string contraseñaDesencriptada = EncryptionHelper.Decrypt(contraseñaEncriptada);
+
             // Verificar la contraseña
-            return ContraseñaHasher.VerifyPassword(clave, usuario.clave);
+            return clave == contraseñaDesencriptada;
         }
     }
-    }
-
+}

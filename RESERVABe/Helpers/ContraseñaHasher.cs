@@ -1,61 +1,85 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-public static class ContraseñaHasher
+public class EncryptionHelper
 {
-    private const int SaltSize = 16;
-    private const int HashSize = 32;
+    private const string Key = "0123456789ABCDEF"; // Clave de 16 caracteres para AES (128 bits)
 
-    public static string HashPassword(string password)
+    public static string Encrypt(string plainText)
     {
-        byte[] salt = GenerateSalt();
-        byte[] hash = GenerateHash(password, salt);
-        return Convert.ToBase64String(hash) + ":" + Convert.ToBase64String(salt);
-    }
-
-    public static bool VerifyPassword(string password, string hashedPassword)
-    {
-        string[] parts = hashedPassword.Split(':');
-        if (parts.Length != 2)
+        byte[] encryptedBytes;
+        using (Aes aesAlg = Aes.Create())
         {
-           
-            return false;
+            aesAlg.Key = Encoding.UTF8.GetBytes(Key);
+            aesAlg.Mode = CipherMode.CBC; // Modo de cifrado: Cipher Block Chaining
+            aesAlg.Padding = PaddingMode.PKCS7; // Modo de relleno: PKCS7
+
+            // Generar IV (Initialization Vector) aleatorio
+            aesAlg.GenerateIV();
+            byte[] iv = aesAlg.IV;
+
+            // Crear un cifrador para realizar la operación de cifrado
+            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            // Cifrar los datos
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                    {
+                        swEncrypt.Write(plainText);
+                    }
+                    encryptedBytes = msEncrypt.ToArray();
+                }
+            }
+
+            // Combinar IV y datos cifrados
+            byte[] combinedBytes = new byte[iv.Length + encryptedBytes.Length];
+            Array.Copy(iv, 0, combinedBytes, 0, iv.Length);
+            Array.Copy(encryptedBytes, 0, combinedBytes, iv.Length, encryptedBytes.Length);
         }
 
-        byte[] hash = Convert.FromBase64String(parts[0]);
-        byte[] salt = Convert.FromBase64String(parts[1]);
-        byte[] expectedHash = GenerateHash(password, salt);
-        return ByteArraysEqual(hash, expectedHash);
+        return Convert.ToBase64String(encryptedBytes);
     }
 
-    private static byte[] GenerateHash(string password, byte[] salt)
+    public static string Decrypt(string cipherText)
     {
-        using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256))
+        // Decodificar la cadena Base64 en un array de bytes
+        byte[] cipherBytes = Convert.FromBase64String(cipherText);
+
+        string plainText = null;
+        using (Aes aesAlg = Aes.Create())
         {
-            return pbkdf2.GetBytes(HashSize);
-        }
-    }
+            aesAlg.Key = Encoding.UTF8.GetBytes(Key);
+            aesAlg.Mode = CipherMode.CBC;
+            aesAlg.Padding = PaddingMode.PKCS7;
 
-    private static byte[] GenerateSalt()
-    {
-        byte[] salt = new byte[SaltSize];
-        using (var rng = new RNGCryptoServiceProvider())
-        {
-            rng.GetBytes(salt);
-        }
-        return salt;
-    }
+            // Extraer IV de los datos cifrados
+            byte[] iv = new byte[aesAlg.BlockSize / 8];
+            Array.Copy(cipherBytes, 0, iv, 0, iv.Length);
+            aesAlg.IV = iv;
 
-    private static bool ByteArraysEqual(byte[] a, byte[] b)
-    {
-        if (a == null && b == null)
-            return true;
-        if (a == null || b == null || a.Length != b.Length)
-            return false;
-        int result = 0;
-        for (int i = 0; i < a.Length; i++)
-            result |= a[i] ^ b[i];
-        return result == 0;
+            // Crear un descifrador para realizar la operación de descifrado
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            // Descifrar los datos
+            using (MemoryStream msDecrypt = new MemoryStream(cipherBytes, iv.Length, cipherBytes.Length - iv.Length))
+            {
+                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                    {
+                        plainText = srDecrypt.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        return plainText;
     }
 }
