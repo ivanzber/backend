@@ -87,8 +87,8 @@ namespace RESERVABe.Data
                         reserva.idReserva = reader.GetInt32(0);
                         reserva.idUsuario = reader.GetInt32(1);
                         reserva.idCancha = reader.GetInt32(2);
-                        reserva.horaInicio = reader.GetDateTime(3);
-                        reserva.horaFin = reader.GetDateTime(4);
+                        reserva.horaInicio = DateTime.Parse(reader.GetString(3));
+                        reserva.horaFin = DateTime.Parse(reader.GetString(3));
                         reserva.fecha = reader.GetDateTime(5);
                         reservas.Add(reserva);
                     }

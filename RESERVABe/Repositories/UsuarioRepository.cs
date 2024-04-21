@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using Microsoft.AspNetCore.Identity;
 using RESERVABe.Models;
-
 namespace RESERVABe.Data
 {
     public class UsuarioRepository
@@ -13,6 +9,9 @@ namespace RESERVABe.Data
 
         public void RegistrarUsuario(Usuario usuario)
         {
+            // Cifrar la contraseña del usuario
+            string passwordEncriptada = ContraseñaHasher.Encrypt(usuario.clave);
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -22,35 +21,13 @@ namespace RESERVABe.Data
                 command.Parameters.AddWithValue("@apellidousuario", usuario.apellidoUsuario);
                 command.Parameters.AddWithValue("@correo", usuario.correo);
                 command.Parameters.AddWithValue("@idRol", usuario.idRol);
-                string contraseñaEncriptada = EncryptionHelper.Encrypt(usuario.clave);
-                command.Parameters.AddWithValue("@clave", contraseñaEncriptada);
+                command.Parameters.AddWithValue("@clave", passwordEncriptada); // Usar la contraseña cifrada
                 command.ExecuteNonQuery();
             }
         }
-        public string ObtenerContraseña(string nombreUsuario)
-        {
-            string contraseñaEncriptada = null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("SELECT clave FROM usuario WHERE nombreUsuario = @nombreusuario", connection);
-                command.Parameters.AddWithValue("@nombreusuario", nombreUsuario);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        contraseñaEncriptada = reader["clave"].ToString();
-                    }
-                }
-            }
 
-            // Desencriptar la contraseña antes de devolverla
-            string contraseñaDesencriptada = EncryptionHelper.Decrypt(contraseñaEncriptada);
-            return contraseñaDesencriptada;
-        }
-    
 
-    public Usuario ObtenerUsuario(int id)
+        public Usuario ObtenerUsuario(int id)
         {
             Usuario usuario = new Usuario();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -69,36 +46,31 @@ namespace RESERVABe.Data
                         usuario.apellidoUsuario = reader.GetString(2);
                         usuario.correo = reader.GetString(3);
                         usuario.idRol = reader.GetInt32(4);
-                        usuario.clave = reader.GetString(5);
+                        string passwordEncriptada = reader.GetString(5);
+                        usuario.clave = ContraseñaHasher.Decrypt(passwordEncriptada); // Descifrar la contraseña
                     }
                 }
             }
             return usuario;
         }
-        public Usuario ObtenerUsuarioPorCorreo(string correo)
+        public string ObtenerContraseñaPorCorreo(string correo)
         {
-            Usuario usuario = new Usuario();
+            string contraseñaEncriptada = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM usuario WHERE correo = @correo", connection);
+                SqlCommand command = new SqlCommand("SELECT clave FROM usuario WHERE correo = @correo", connection);
                 command.Parameters.AddWithValue("@correo", correo);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                object result = command.ExecuteScalar();
+                if (result != null)
                 {
-                    while (reader.Read())
-                    {
-                        usuario.idUsuario = reader.GetInt32(0);
-                        usuario.nombreUsuario = reader.GetString(1);
-                        usuario.apellidoUsuario = reader.GetString(2);
-                        usuario.correo = reader.GetString(3);
-                        usuario.idRol = reader.GetInt32(4);
-                        usuario.clave = reader.GetString(5);
-                    }
+                    contraseñaEncriptada = result.ToString();
                 }
             }
-            return usuario;
+            return contraseñaEncriptada;
         }
+
+
         public void ModificarUsuario(int id, Usuario usuario)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

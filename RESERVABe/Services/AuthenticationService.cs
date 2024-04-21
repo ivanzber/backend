@@ -15,7 +15,7 @@ namespace RESERVABe.Services
         public bool Login(string correo, string clave)
         {
             // Obtener la contraseña encriptada del usuario por el correo electrónico
-            string contraseñaEncriptada = _usuarioRepository.ObtenerContraseña(correo);
+            string contraseñaEncriptada = _usuarioRepository.ObtenerContraseñaPorCorreo(correo);
 
             if (contraseñaEncriptada == null)
             {
@@ -24,7 +24,7 @@ namespace RESERVABe.Services
             }
 
             // Desencriptar la contraseña obtenida de la base de datos
-            string contraseñaDesencriptada = EncryptionHelper.Decrypt(contraseñaEncriptada);
+            string contraseñaDesencriptada = ContraseñaHasher.Decrypt(contraseñaEncriptada);
 
             // Verificar la contraseña
             return clave == contraseñaDesencriptada;

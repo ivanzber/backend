@@ -4,36 +4,33 @@ using RESERVABe.Services;
 
 namespace RESERVABe.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
-        private readonly AuthenticationService _authenticationService;
+        private readonly AuthenticationService _authService;
 
-        public AuthenticationController(AuthenticationService authenticationService)
+        public AuthController(AuthenticationService authService)
         {
-            _authenticationService = authenticationService;
+            _authService = authService;
         }
 
         [HttpPost("login")]
-        public IActionResult Login(Login login)
+        public IActionResult Login([FromBody] Login login)
         {
-            if (ModelState.IsValid)
+            if (login == null)
             {
-                bool isAuthenticated = _authenticationService.Login(login.correo, login.clave);
-                if (isAuthenticated)
-                {
-                    return Ok(new { message = "Inicio de sesión exitoso" });
-                }
-                else
-                {
-                    return Unauthorized(new { error = "Correo electrónico o contraseña inválidos" });
-                }
+                return BadRequest("Los datos de inicio de sesión son nulos");
             }
-            else
+
+            bool isAuthenticated = _authService.Login(login.correo, login.clave);
+            if (isAuthenticated)
             {
-                return BadRequest(new { error = "Datos de entrada inválidos", details = ModelState });
+                // Aquí podrías generar un token JWT u otra información de sesión
+                return Ok("Usuario autenticado");
             }
+
+            return Unauthorized("Credenciales no válidas");
         }
     }
 }
