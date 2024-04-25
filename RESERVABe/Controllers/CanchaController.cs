@@ -4,9 +4,11 @@ using RESERVABe.Models;
 using RESERVABe.Services;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CanchaController : ControllerBase
 {
     private readonly CanchaService _canchaService;
@@ -24,6 +26,7 @@ public class CanchaController : ControllerBase
     }
 
     [HttpGet("{id}")]
+   
     public IActionResult ObtenerCancha(int id)
     {
         Cancha cancha = _canchaService.ObtenerCancha(id);
@@ -38,6 +41,7 @@ public class CanchaController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult ListarCanchas()
     {
         List<Cancha> canchas = _canchaService.ListarCanchas();

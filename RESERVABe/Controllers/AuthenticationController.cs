@@ -9,10 +9,12 @@ namespace RESERVABe.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthenticationService _authService;
+        private readonly JwtSettingsDto _jwtSettings;
 
-        public AuthController(AuthenticationService authService)
+        public AuthController(AuthenticationService authService, JwtSettingsDto jwtSettings)
         {
             _authService = authService;
+            _jwtSettings = jwtSettings;
         }
 
         [HttpPost("login")]
@@ -26,8 +28,15 @@ namespace RESERVABe.Controllers
             bool isAuthenticated = _authService.Login(login.correo, login.clave);
             if (isAuthenticated)
             {
-                // Aquí podrías generar un token JWT u otra información de sesión
-                return Ok("Usuario autenticado");
+                ResponseLogin responseLogin = new ResponseLogin();
+                responseLogin = JwtServices.GenTokenKey(responseLogin, _jwtSettings);
+
+                if (responseLogin == null)
+                {
+                    return Unauthorized("Error al generar el token JWT");
+                }
+
+                return Ok(responseLogin);
             }
 
             return Unauthorized("Credenciales no válidas");
