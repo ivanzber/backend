@@ -1,59 +1,108 @@
-﻿
-using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
+
 using System.Text;
 
-public static class ContraseñaHasher
+public class ContraseñaHasher
+
 {
-    private static readonly int _iterations = 10000; 
-    private static readonly int _saltSize = 16; 
 
-    public static string HashPassword(string password)
+    private static byte[] key = Encoding.UTF8.GetBytes("e10adc3949ba59abbe56e057f20f883e"); 
+
+    private static byte[] iv = Encoding.UTF8.GetBytes("ABCDEFGH12345678").Take(16).ToArray();
+    
+
+    public static string GetMD5(string str)
+
     {
-        byte[] salt = GenerateSalt();
-        byte[] hash = Pbkdf2(password, salt, _iterations);
 
-        return Convert.ToBase64String(hash) + ":" + Convert.ToBase64String(salt);
+        MD5 md5 = MD5.Create();
+
+        ASCIIEncoding encoding = new ASCIIEncoding();
+
+        byte[]? stream = null;
+
+        StringBuilder sb = new StringBuilder();
+
+        stream = md5.ComputeHash(encoding.GetBytes(str));
+
+        for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+
+        return sb.ToString();
+
     }
 
-    public static bool VerifyPassword(string password, string hashedPassword)
+    public static string Encrypt(string plainText)
+
     {
-        string[] parts = hashedPassword.Split(':');
-        byte[] hash = Convert.FromBase64String(parts[0]);
-        byte[] salt = Convert.FromBase64String(parts[1]);
 
-        byte[] computedHash = Pbkdf2(password, salt, _iterations);
+        using (var aes = Aes.Create())
 
-        return ByteArraysEqual(hash, computedHash);
-    }
-
-    private static byte[] Pbkdf2(string password, byte[] salt, int iterations)
-    {
-        Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
-        return pbkdf2.GetBytes(_saltSize);
-    }
-
-    private static byte[] GenerateSalt()
-    {
-        byte[] salt = new byte[_saltSize];
-        using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
         {
-            rng.GetBytes(salt);
+
+            aes.Key = key;
+
+            aes.IV = iv;
+
+            var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+            using (var msEncrypt = new MemoryStream())
+
+            {
+
+                using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+
+                using (var swEncrypt = new StreamWriter(csEncrypt))
+
+                {
+
+                    swEncrypt.Write(plainText);
+
+                }
+
+                var encryptedBytes = msEncrypt.ToArray();
+
+                return Convert.ToBase64String(encryptedBytes);
+
+            }
+
         }
-        return salt;
+
     }
 
-    private static bool ByteArraysEqual(byte[] a, byte[] b)
+    public static string Decrypt(string cipherText)
+
     {
-        if (a == null && b == null)
-            return true;
 
-        if (a == null || b == null || a.Length != b.Length)
-            return false;
+        var cipherBytes = Convert.FromBase64String(cipherText);
 
-        int result = 0;
-        for (int i = 0; i < a.Length; i++)
-            result |= a[i] ^ b[i];
-        return result == 0;
+        using (var aes = Aes.Create())
+
+        {
+
+            aes.Key = key;
+
+            aes.IV = iv;
+
+            var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+            using (var msDecrypt = new MemoryStream(cipherBytes))
+
+            {
+
+                using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+
+                using (var srDecrypt = new StreamReader(csDecrypt))
+
+                {
+
+                    return srDecrypt.ReadToEnd();
+
+                }
+
+            }
+
+        }
+
     }
+
 }

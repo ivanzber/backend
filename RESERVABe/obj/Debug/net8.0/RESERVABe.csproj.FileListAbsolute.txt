@@ -36,3 +36,17 @@ C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESER
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\RESERVABe.pdb
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\RESERVABe.genruntimeconfig.cache
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\obj\Debug\net8.0\ref\RESERVABe.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Hellang.Authentication.JwtBearer.Google.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\JWT.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\JWT.Extensions.AspNetCore.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\JWT.Extensions.DependencyInjection.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.AspNetCore.TestHost.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RESERVABe.Models;
 using RESERVABe.Services;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UsuarioController : ControllerBase
 {
     private readonly UsuarioService _usuarioService;
@@ -14,6 +16,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public IActionResult RegistrarUsuario(Usuario usuario)
     {
         _usuarioService.RegistrarUsuario(usuario);
@@ -35,6 +38,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult ListarUsuarios()
     {
         List<Usuario> usuarios = _usuarioService.ListarUsuarios();

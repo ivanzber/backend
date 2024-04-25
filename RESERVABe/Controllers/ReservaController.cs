@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using RESERVABe.Models;
 using RESERVABe.Services;
-using System;
-using System.Collections.Generic;
-
+using Microsoft.AspNetCore.Authorization;
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ReservaController : ControllerBase
 {
     private readonly ReservaService _reservaService;
@@ -17,6 +16,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public IActionResult RegistrarReserva(Reserva reserva)
     {
         _reservaService.RegistrarReserva(reserva);
@@ -38,6 +38,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult ListarReservas()
     {
         List<Reserva> reservas = _reservaService.ListarReservas();
@@ -45,6 +46,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [AllowAnonymous]
     public IActionResult EliminarReserva(int id)
     {
         _reservaService.EliminarReserva(id);
