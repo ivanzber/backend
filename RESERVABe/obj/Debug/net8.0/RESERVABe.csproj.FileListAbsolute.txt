@@ -50,3 +50,10 @@ C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESER
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\iTextSharp.LGPLv2.Core.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\SkiaSharp.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\ivana\Desktop\semestre Vl\software ll\Proyecto_software\RESERVABe\RESERVABe\bin\Debug\net8.0\runtimes\win-x86\native\libSkiaSharp.dll

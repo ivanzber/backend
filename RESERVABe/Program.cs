@@ -24,6 +24,12 @@ builder.Services.AddScoped<UsuarioRepository>();
 // Agregar AuthenticationService como servicio
 builder.Services.AddScoped<AuthenticationService>();
 
+// Agregar ReporteService como servicio
+builder.Services.AddScoped<ReporteService>();
+
+// Agregar ReservaRepository como servicio
+builder.Services.AddScoped<ReservaRepository>();
+
 // Configurar JWT
 var jwtSettings = new JwtSettingsDto();
 builder.Configuration.GetSection("JwtSettings").Bind(jwtSettings);

@@ -1,5 +1,4 @@
-﻿// Services/UsuarioService.cs
-using RESERVABe.Data;
+﻿using RESERVABe.Data;
 using RESERVABe.Models;
 
 namespace RESERVABe.Services

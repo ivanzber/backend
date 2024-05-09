@@ -1,5 +1,4 @@
-﻿// Controllers/ReservaController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RESERVABe.Models;
 using RESERVABe.Services;
 using Microsoft.AspNetCore.Authorization;

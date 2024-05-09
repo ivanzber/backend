@@ -9,7 +9,7 @@ namespace RESERVABe.Data
 
         public void RegistrarUsuario(Usuario usuario)
         {
-            // Cifrar la contraseña del usuario
+           
             string passwordEncriptada = ContraseñaHasher.Encrypt(usuario.clave);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -21,7 +21,7 @@ namespace RESERVABe.Data
                 command.Parameters.AddWithValue("@apellidousuario", usuario.apellidoUsuario);
                 command.Parameters.AddWithValue("@correo", usuario.correo);
                 command.Parameters.AddWithValue("@idRol", usuario.idRol);
-                command.Parameters.AddWithValue("@clave", passwordEncriptada); // Usar la contraseña cifrada
+                command.Parameters.AddWithValue("@clave", passwordEncriptada); 
                 command.ExecuteNonQuery();
             }
         }
@@ -47,7 +47,7 @@ namespace RESERVABe.Data
                         usuario.correo = reader.GetString(3);
                         usuario.idRol = reader.GetInt32(4);
                         string passwordEncriptada = reader.GetString(5);
-                        usuario.clave = ContraseñaHasher.Decrypt(passwordEncriptada); // Descifrar la contraseña
+                        usuario.clave = ContraseñaHasher.Decrypt(passwordEncriptada); 
                     }
                 }
             }
