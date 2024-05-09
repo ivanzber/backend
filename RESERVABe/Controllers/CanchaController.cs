@@ -1,4 +1,4 @@
-﻿// Controllers/CanchaController.cs
+﻿
 using Microsoft.AspNetCore.Mvc;
 using RESERVABe.Models;
 using RESERVABe.Services;

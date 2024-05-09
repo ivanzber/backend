@@ -39,7 +39,7 @@ namespace RESERVABe.Controllers
                 return Ok(responseLogin);
             }
 
-            return Unauthorized("Credenciales no válidas");
+            return Unauthorized("Usuario o clave no válidas");
         }
     }
 }
