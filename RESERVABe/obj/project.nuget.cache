@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FMHQWcxogF1qdSsIMivaQoGcwpDLsoy5H8TuD9g6W0bAobm2QH7YJJLf8YdNFOG9Bw0h7Osi4jP4WksTyscG1g==",
+  "dgSpecHash": "0X3lGEyI7/keFKr4PYcmVwXujezQAviGthsfphc9g5/12UTfVaH+MCCnh7797JaFnbbf9Rf3uuD+9RD+ZZGr+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ivana\\Desktop\\semestre Vl\\software ll\\Proyecto_software\\RESERVABe\\RESERVABe\\RESERVABe.csproj",
+  "projectFilePath": "C:\\Users\\ivana\\Documents\\GitHub\\backend\\RESERVABe\\RESERVABe.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivana\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\ivana\\.nuget\\packages\\hellang.authentication.jwtbearer.google\\3.0.0\\hellang.authentication.jwtbearer.google.3.0.0.nupkg.sha512",

@@ -19,7 +19,7 @@ namespace RESERVABe.Data
                 command.Parameters.AddWithValue("@idCancha", reserva.idCancha);
                 command.Parameters.AddWithValue("@horaInicio", reserva.horaInicio);
                 command.Parameters.AddWithValue("@horaFin", reserva.horaFin);
-                command.Parameters.AddWithValue("@fecha", reserva.fecha);
+                command.Parameters.AddWithValue("@fecha", reserva.fecha.ToString("d"));
                 command.ExecuteNonQuery();
             }
         }
@@ -43,7 +43,7 @@ namespace RESERVABe.Data
                         reserva.idCancha = reader.GetInt32(2);
                         reserva.horaInicio = reader.GetTimeSpan(3);
                         reserva.horaFin = reader.GetTimeSpan(4);
-                        reserva.fecha = reader.GetDateTime(5);
+                        reserva.fecha = DateOnly.FromDateTime(reader.GetDateTime(5));
                     }
                 }
             }
@@ -62,7 +62,7 @@ namespace RESERVABe.Data
                 command.Parameters.AddWithValue("@idCancha", reserva.idCancha);
                 command.Parameters.AddWithValue("@horaInicio", reserva.horaInicio);
                 command.Parameters.AddWithValue("@horaFin", reserva.horaFin);
-                command.Parameters.AddWithValue("@fecha", reserva.fecha);
+                command.Parameters.AddWithValue("@fecha", reserva.fecha.ToString("d"));
                 command.ExecuteNonQuery();
             }
         }
@@ -86,7 +86,7 @@ namespace RESERVABe.Data
                         reserva.idCancha = reader.GetInt32(2);
                         reserva.horaInicio = reader.GetTimeSpan(3);
                         reserva.horaFin = reader.GetTimeSpan(4);
-                        reserva.fecha = reader.GetDateTime(5);
+                        reserva.fecha = DateOnly.FromDateTime(reader.GetDateTime(5));
                         reservas.Add(reserva);
                     }
                 }
@@ -132,7 +132,7 @@ namespace RESERVABe.Data
                         reserva.nombreCancha = reader.GetString(2);
                         reserva.horaInicio = reader.GetTimeSpan(3);
                         reserva.horaFin = reader.GetTimeSpan(4);
-                        reserva.fecha = reader.GetDateTime(5);
+                        reserva.fecha = DateOnly.FromDateTime(reader.GetDateTime(5));
 
                         reservasActivas.Add(reserva);
                     }

@@ -1,4 +1,6 @@
-﻿namespace RESERVABe.Models
+﻿using Microsoft.VisualBasic;
+
+namespace RESERVABe.Models
 {
         public class Reserva
         {
@@ -7,7 +9,7 @@
         public int idCancha { get; set; }
         public TimeSpan horaInicio { get; set; }
         public TimeSpan horaFin { get; set; }
-        public DateTime fecha { get; set; }
+        public DateOnly fecha { get; set; }
         public string nombreUsuario { get; set; }
         public string nombreCancha { get; set; }
     }

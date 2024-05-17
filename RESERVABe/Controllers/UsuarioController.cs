@@ -15,6 +15,7 @@ public class UsuarioController : ControllerBase
         _usuarioService = new UsuarioService();
     }
 
+
     [HttpPost]
     [AllowAnonymous]
     public IActionResult RegistrarUsuario(Usuario usuario)
@@ -50,5 +51,16 @@ public class UsuarioController : ControllerBase
     {
         _usuarioService.EliminarUsuario(id);
         return Ok("Usuario eliminado exitosamente.");
+    }
+    [HttpGet("correo/{correo}")]
+    [AllowAnonymous]
+    public IActionResult ObtenerUsuarioPorCorreo(string correo)
+    {
+        Usuario usuario = _usuarioService.ObtenerUsuarioPorCorreo(correo);
+        if (usuario == null)
+        {
+            return NotFound("Usuario no encontrado.");
+        }
+        return Ok(usuario);
     }
 }

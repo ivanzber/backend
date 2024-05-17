@@ -126,5 +126,33 @@ namespace RESERVABe.Data
                 command.ExecuteNonQuery();
             }
         }
+        public Usuario ObtenerUsuarioPorCorreo(string correo)
+        {
+            Usuario usuario = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("usp_obtener_por_correo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@correo", correo);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        usuario = new Usuario
+                        {
+                            idUsuario = reader.GetInt32(0),
+                            nombreUsuario = reader.GetString(1),
+                            apellidoUsuario = reader.GetString(2),
+                            correo = reader.GetString(3),
+                            idRol = reader.GetInt32(4),
+                            clave = reader.GetString(5)
+                        };
+                    }
+                }
+            }
+            return usuario;
+        }
     }
 }

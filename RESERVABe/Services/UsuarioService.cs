@@ -36,5 +36,9 @@ namespace RESERVABe.Services
         {
             _usuarioRepository.EliminarUsuario(id);
         }
+        public Usuario ObtenerUsuarioPorCorreo(string correo)
+        {
+            return _usuarioRepository.ObtenerUsuarioPorCorreo(correo);
+        }
     }
 }
